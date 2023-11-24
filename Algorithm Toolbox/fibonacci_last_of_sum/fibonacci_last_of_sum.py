@@ -10,7 +10,7 @@ def fibonacci_number(n):
         fib = prev%10 + curr%10
         sum_series.append(sum_series[-1]+fib)
         prev,curr = curr%10,fib%10
-    return sum_series[n%60-1]%10
+    return sum_series
 
 if __name__ == '__main__':
     input_n = int(input())
