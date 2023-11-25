@@ -6,12 +6,14 @@ def largest_number(numbers):
     concat = ''
     for i in numbers:
         concat += i
-        
+    numbers = [*concat]
     numbers.sort()
     largest=''
-    for i in range(1,len(numbers)):
-        largest+= max(number)
-    return largest
+    for i in range(len(numbers)):
+        largest+= max(numbers)
+        numbers.remove(max(numbers))
+        
+    return int(largest)
 
 
 if __name__ == '__main__':
