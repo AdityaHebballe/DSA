@@ -19,7 +19,7 @@ def min_refills(distance, tank, stops):
     next_stop=tank
     no_of_stops=0
     for i in range(1,len(stops)):
-        if stops[len(stops)-i]<next_stop:
+        if stops[len(stops)-i]<=next_stop:
             distance-=stops[len(stops)-i]
             no_of_stops+=1
             next_stop=stops[len(stops)-i]
@@ -27,8 +27,8 @@ def min_refills(distance, tank, stops):
             if distance<0:
                 break
     return no_of_stops
-
-
+if fuck==0:
+    print()
 if __name__ == '__main__':
     d, m, _, *stops = map(int, stdin.read().split())
     print(min_refills(d, m, stops))
