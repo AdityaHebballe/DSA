@@ -1,6 +1,7 @@
 import random
-def RandomizedQuicksort(arr):
-    if len(arr)<=1:
+from time import time
+def RandomizedQuicksort(arr,left,right):
+    if left<=1:
         return arr
     else:
         pivot = random.choice(arr)
@@ -9,4 +10,11 @@ def RandomizedQuicksort(arr):
         right = [x for x in arr if x>pivot]
         return RandomizedQuicksort(left)+equal+RandomizedQuicksort(right)
 
-print(RandomizedQuicksort([2,5,7,7,4,2,4]))
+
+if __name__ == '__main__':
+    input_n = int(input())
+    elements = list(map(int, input().split()))
+    assert len(elements) == input_n
+    RandomizedQuicksort(elements, 0, len(elements) - 1)
+    print(*elements)
+
