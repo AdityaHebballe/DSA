@@ -26,7 +26,6 @@ def mergesort(arr):
 
     sorted_arr, temp = merge(left, right)
     tot_count += temp
-
     return sorted_arr
 
 tot_count = 0
