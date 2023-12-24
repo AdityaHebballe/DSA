@@ -1,3 +1,4 @@
+from  random import randint
 # def partition(arr,l,h):
 #     pivot = arr[l]
 #     i=l+1
@@ -19,28 +20,36 @@
 #         pivot=partition(arr,l,h)
 #         QuickSort(arr,l,pivot-1)
 #         QuickSort(arr,pivot+1,h)
-def partition(array, low, high):
-    pivot = array[high]
-
-    j = low - 1
-    for i in range(low, high):
-        if array[i] <= pivot:
-            j+=1
-            (array[j], array[i]) = (array[i], array[j])
-    (array[j + 1], array[high]) = (array[high], array[j + 1])
- 
-    return j + 1
- 
+def partition(arr,l,h):
+    m=l
+    
+    k=randint(l,h)
+    
+    arr[k],arr[l]=arr[k],arr[l]
+    
+    for i in range(l+1,h+1):
+        
+        if arr[i]<arr[l]:
+            
+            m+=1
+            arr[i],arr[m]=arr[m],arr[i]
+            
+    arr[l],arr[m]=arr[m],arr[l]
+    return m
  
  
 def quickSort(array, low, high):
-    if low < high:
+    while low < high:
         pi = partition(array, low, high)
-        quickSort(array, low, pi - 1)
-        quickSort(array, pi + 1, high)
+        if (pi-low)<(high-pi):
+            quickSort(array, low, pi - 1)
+            low=pi+1
+        else:
+            quickSort(array,pi+1,high)
+            high=pi-1
+    
  
- 
-arr = [4,2,7,1,9,5,3]
+arr = [4,2,7,1,9,5,3,5,23,12,345,3]
 quickSort(arr, 0, len(arr) - 1)
 print(arr)
         
