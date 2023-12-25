@@ -1,32 +1,46 @@
-A = ['a', 'b', 'c']
-B = ['a','b', 'c', 'd','e']
+from time import time
+import random
+#SMALL EXAMPLE
+# A = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+# B = ['b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+# m = len(A)
+# n = len(B)
 
-# def LCS(A,B,i=0,j=0):
-#     if i>len(A)-1 or j>len(A)-1:
-#         return 0
-#     if A[i]==B[j]:
-#         return 1+LCS(A,B,i+1,j+1)
-#     else:
-#         return max(LCS(A,B,i+1,j),LCS(A,B,i,j+1)) 
-# print(LCS(A,B))
+# LARGE EXAMPLE
+length_A = 50
+length_B = 20
+A = [random.randint(1, 1000) for _ in range(length_A)]
+B = [random.randint(1, 1000) for _ in range(length_B)]
+m = len(A)
+n = len(B)
 
-#USING DYNAMIC PROGRAMMING
-
-i,j = len(A), len(B)
-# Create a memoization table filled with -1
-memo = [[-1] * (j + 1) for _ in range(i + 1)] 
-
-def lcs_helper(i, j):
-    if memo[i][j] != -1:
-        return memo[i][j]
-
-    if i == 0 or j == 0:
-        result = 0
-    elif A[i - 1] == B[j - 1]:
-        result = 1 + lcs_helper(i - 1, j - 1)
+dp = [[-1]*(n+1) for _ in range(m+1)] 
+def LCS(A,B,m,n,dp):
+    if m == 0 or n == 0:
+        return 0
+    if(dp[m][n] != -1):
+        return dp[m][n]
+    if A[m-1] == B[n-1]:
+        dp[m][n] = 1 + LCS(A, B, m-1, n-1, dp)
+        return dp[m][n]
     else:
-        result = max(lcs_helper(i - 1, j), lcs_helper(i, j - 1))
+        dp[m][n] = max(LCS(A, B, m-1, n, dp), LCS(A, B, m, n-1, dp))
+        return dp[m][n]
 
-    memo[i][j] = result
-    return result
-print(lcs_helper(i, j))
+def LCS2(A,B,m,n):
+    if m == 0 or n == 0:
+        return 0
+    if A[m-1] == B[n-1]:
+        return 1 + LCS2(A, B, m-1, n-1)
+    else:
+        return max(LCS2(A, B, m-1, n), LCS2(A, B, m, n-1))
+#TESTING DP
+starttime=time()
+print(LCS(A, B, m, n, dp))
+endtime=time()
+print("Time taken dp: ",endtime-starttime)
+# TESTING RECURSION
+starttime1=time()
+print(LCS2(A, B, m, n))
+endtime1=time()
+print("Time taken rec: ",endtime1-starttime1)
