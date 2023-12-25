@@ -27,7 +27,7 @@ def LCS(A,B,m,n,dp):
         dp[m][n] = max(LCS(A, B, m-1, n, dp), LCS(A, B, m, n-1, dp))
         return dp[m][n]
 
-def LCS2(A,B,m,n):
+def LCS2(A,B,m,n): 
     if m == 0 or n == 0:
         return 0
     if A[m-1] == B[n-1]:
