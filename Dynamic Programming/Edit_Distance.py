@@ -14,12 +14,13 @@ def edit_distance_rec(A,B):
                    edit_distance_rec(A[:-1],B)+1,  #Insertion
                    edit_distance_rec(A[:-1],B[:-1]))    
     else:
-        return min(edit_distance_rec(A,B[:-1])+1,
-                   edit_distance_rec(A[:-1],B)+1,
-                   edit_distance_rec(A[:-1],B[:-1])+1)
+        return 1+min(edit_distance_rec(A,B[:-1]),
+                   edit_distance_rec(A[:-1],B),
+                   edit_distance_rec(A[:-1],B[:-1]))
 
 
 dp = [[-1] * (n + 1) for _ in range(m + 1)]
+ 
 def edit_distance_dp(A, B, m, n, dp):
     if m == 0:
         return n
@@ -35,21 +36,30 @@ def edit_distance_dp(A, B, m, n, dp):
                        edit_distance_dp(A, B, m - 1, n - 1, dp))
 
     else:
-        dp[m][n] = min(1 + edit_distance_dp(A, B, m, n - 1, dp),
-                       1 + edit_distance_dp(A, B, m - 1, n, dp),
-                       1 + edit_distance_dp(A, B, m - 1, n - 1, dp))
+        dp[m][n] =1+ min(edit_distance_dp(A, B, m, n - 1, dp),
+                       edit_distance_dp(A, B, m - 1, n, dp),
+                       edit_distance_dp(A, B, m - 1, n - 1, dp))
     return dp[m][n]
 
-starttimedp = time()
-result = edit_distance_dp(A, B, m, n, dp)
-print(result)
-print("Time taken dp: ",time()-starttimedp)
-endtimedp = time()
+def find_edit_distance(A, B):
+    m=len(A)
+    n=len(B)
+    dp = [[-1] * (n + 1) for _ in range(m + 1)]
+    return edit_distance_dp(A, B, m, n, dp)
 
-starttimerec=time()
-print(edit_distance_rec(A, B))
-endttimerec=time()
-print("Time taken rec: ",endttimerec-starttimerec)
+if __name__ == "__main__":
+    print(find_edit_distance(input(), input()))
+
+# starttimedp = time()
+# result = edit_distance_dp(A, B, m, n, dp)
+# print(result)
+# print("Time taken dp: ",time()-starttimedp)
+# endtimedp = time()
+
+# starttimerec=time()
+# print(edit_distance_rec(A, B))
+# endttimerec=time()
+# print("Time taken rec: ",endttimerec-starttimerec)
 
 
 

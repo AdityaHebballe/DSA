@@ -13,8 +13,12 @@ A = [random.randint(1, 1000) for _ in range(length_A)]
 B = [random.randint(1, 1000) for _ in range(length_B)]
 m = len(A)
 n = len(B)
+def find_lcs(A,B):
+    m=len(A)
+    n=len(B)
+    dp = [[-1]*(n+1) for _ in range(m+1)] 
+    return LCS(A,B,m,n,dp)
 
-dp = [[-1]*(n+1) for _ in range(m+1)] 
 def LCS(A,B,m,n,dp):
     if m == 0 or n == 0:
         return 0
@@ -34,13 +38,25 @@ def LCS2(A,B,m,n):
         return 1 + LCS2(A, B, m-1, n-1)
     else:
         return max(LCS2(A, B, m-1, n), LCS2(A, B, m, n-1))
-#TESTING DP
-starttime=time()
-print(LCS(A, B, m, n, dp))
-endtime=time()
-print("Time taken dp: ",endtime-starttime)
-# TESTING RECURSION
-starttime1=time()
-print(LCS2(A, B, m, n))
-endtime1=time()
-print("Time taken rec: ",endtime1-starttime1)
+    
+if __name__ == '__main__':
+    n = int(input())
+    a = list(map(int, input().split()))
+    assert len(a) == n
+
+    m = int(input())
+    b = list(map(int, input().split()))
+    assert len(b) == m
+
+    print(find_lcs(a, b))    
+
+# #TESTING DP
+# starttime=time()
+# print(LCS(A, B, m, n, dp))
+# endtime=time()
+# print("Time taken dp: ",endtime-starttime)
+# # TESTING RECURSION
+# starttime1=time()
+# print(LCS2(A, B, m, n))
+# endtime1=time()
+# print("Time taken rec: ",endtime1-starttime1)
