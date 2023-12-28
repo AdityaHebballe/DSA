@@ -1,4 +1,5 @@
 from sys import stdin
+from time import time
 
 def maximum_gold(capacity, weights):
     dp = [[-1]*(capacity+1) for _ in range(len(weights)+1)]
@@ -13,11 +14,12 @@ def maximum_gold(capacity, weights):
                 val = dp[i-1][w-weights[i-1]]+weights[i-1]
                 dp[i][w]=max(val,dp[i][w])
     return dp[len(weights)][capacity]
-            
+starttime = time()
+print(maximum_gold(10,[1,4,8]))
+endtime = time()
+print(f"Time taken : {endtime-starttime}")
+# if __name__ == '__main__':
+#     input_capacity, n, *input_weights = list(map(int, stdin.read().split()))
+#     assert len(input_weights) == n
 
-
-if __name__ == '__main__':
-    input_capacity, n, *input_weights = list(map(int, stdin.read().split()))
-    assert len(input_weights) == n
-
-    print(maximum_gold(input_capacity, input_weights))
+#     print(maximum_gold(input_capacity, input_weights))
