@@ -8,35 +8,18 @@ def evaluate(a, b, op):
     else:
         assert False
 
-def MinMax(M,m,i,j,operators):
-    max_value = float('-inf')
-    min_value = float('inf')
-    for k in range(i,j):
-        a= evaluate(M[i][k],M[k+1][j],operators[k])
-        b= evaluate(M[i][k],M[k+1][j],operators[k])
-        c= evaluate(M[i][k],M[k+1][j],operators[k])
-        d= evaluate(M[i][k],M[k+1][j],operators[k])
-        min_value = min(min_value,a,b,c,d)
-        max_value =max(max_value,a,b,c,d)
-    return min_value,max_value
-
-def maximum_value(dataset):
-    operands = []
+def Max_value(dataset):
+    operands =[]
     operators = []
     for i in dataset:
-        if i in ['+','-','*']:
-            operators.append(i)
+        if i.isdigit():
+            operands.append(int(i))
         else:
-            operators.append(int(i))
-    M = [[-1]*len(operands) for _ in range(len(operands))]
-    m = [[-1]*len(operands) for _ in range(len(operands))]
-    for i in range(len(operands)):
-        M[i][i]= operands[i]
-    for i in range(len(operands)):
-        m[i][i]= operands[i]
-    for k in range(1,len(operands)):
-        for i in range(len(operands)-k):
-            j = k+i
-            m[i][j],M[i][j] = 
+            operators.append(i)
+    M = [[0]*(len(operands)) for _ in range(len(operands))]
+    m = [[0]*(len(operands)) for _ in range(len(operands))]
+
+if __name__ == "__main__":
+    print(Max_value(input()))
 
             
