@@ -7,3 +7,5 @@ def stair(ind):
     right = stair(ind-2)
     
     return left + right
+
+print(stair(5))

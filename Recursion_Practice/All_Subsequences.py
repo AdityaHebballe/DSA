@@ -1,3 +1,4 @@
+# 6
 A = [3,1,2]
 Result=[]
 def subsequences(A,i,Result):

@@ -1,0 +1,15 @@
+def maxProfit(prices) -> int:
+    
+    maxim=float('-inf')
+    
+    def curse(prices,i,maxim,index):
+        if i+1==len(prices):
+            return
+        for ind in range(i+1,len(prices)):
+            maxim = max(prices[ind]-prices[i],maxim)
+            index = ind
+            curse(prices,i+1,maxim,index)
+        return maxim
+    return curse(prices,0,float('-inf'),index=0)
+
+print(maxProfit([7,1,5,3,6,4]))

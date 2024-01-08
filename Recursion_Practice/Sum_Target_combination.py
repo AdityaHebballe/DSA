@@ -1,3 +1,5 @@
+# 8 and 9
+
 def combination_sum(arr,i,result,target,ans):
     if i==len(arr):
         if target==0:
@@ -13,8 +15,8 @@ def combination_sum(arr,i,result,target,ans):
         combination_sum(arr,i+2,result,target,ans)
     return ans
 
-# ans = combination_sum([2,3,6,7],0,[],7,[])
-# print(ans)
+ans = combination_sum([2,3,6,7],0,[],7,[])
+print(ans)
 
 def combination_sum_no_rep(arr,ind,target,ds,ans):
     if target==0:

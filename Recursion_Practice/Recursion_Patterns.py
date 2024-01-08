@@ -1,3 +1,4 @@
+# 10
 def subsum(arr,i,target,Result):
     if i==len(arr):
         if sum(Result)==target:
@@ -10,22 +11,8 @@ def subsum(arr,i,target,Result):
     Result.pop()
     subsum(arr,i+1,target,Result)
 
-def subsum2(arr,i,target,Result,s):
-    if i==len(arr):
-        if s==target:
-            print(Result)
-            return
-        else:
-            return
-    Result.append(arr[i])
-    s+=arr[i]
-    subsum2(arr,i+1,target,Result,s)
-    Result.pop()
-    s-=arr[i]
-    subsum2(arr,i+1,target,Result,s)
-    
 
-
+# 11
 def subsumAnyOne(arr,i,target,Result):
     if i==len(arr):
         if sum(Result)==target:
@@ -37,12 +24,9 @@ def subsumAnyOne(arr,i,target,Result):
     
     if subsumAnyOne(arr,i+1,target,Result)== True :
         return True
-    
     Result.pop()
-    
     if subsumAnyOne(arr,i+1,target,Result)== True :
         return True
-    
     return False
 
 def Count(arr,i,target,Result):
@@ -55,11 +39,8 @@ def Count(arr,i,target,Result):
     Result.append(arr[i])
     
     l = Count(arr,i+1,target,Result)
-    
     Result.pop()
-    
     r = Count(arr,i+1,target,Result)
-    
     return l+r
 
 arr=[1,2,3]
